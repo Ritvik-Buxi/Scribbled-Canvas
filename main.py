@@ -35,4 +35,36 @@ Lendy.place(relx=0.7,rely=0.9,anchor=CENTER)
 endydrop = ttk.Combobox(root,state="readonly",values=coordinate_values,width=10)
 endydrop.place(relx=0.8,rely=0.9,anchor=CENTER)
 
+def circle(event):
+    oldx = startxdrop.get()
+    oldy = startydrop.get()
+    newx = endxdrop.get()
+    newy = endydrop.get()
+    keypress = "c"
+    draw(keypress,oldx,oldy,newx,newy)
+def rectangle(event):
+    oldx = startxdrop.get()
+    oldy = startydrop.get()
+    newx = endxdrop.get()
+    newy = endydrop.get()
+    keypress = "r"
+    draw(keypress,oldx,oldy,newx,newy)
+def line(event):
+    oldx = startxdrop.get()
+    oldy = startydrop.get()
+    newx = endxdrop.get()
+    newy = endydrop.get()
+    keypress = "l"
+    draw(keypress,oldx,oldy,newx,newy)
+def draw(keypress, oldx,oldy,newx,newy):
+    colour = colourDropdown.get()
+    if keypress == "c":
+        canvas.create_oval(oldx,oldy,newx,newy,width = 3,fill = colour)
+    if keypress == "r":
+        canvas.create_rectangle(oldx,oldy,newx,newy,width = 3,fill = colour)
+    if keypress == "l":
+        canvas.create_line(oldx,oldy,newx,newy,width = 3,fill = colour)
+root.bind("<c>",circle)
+root.bind("<r>",rectangle)
+root.bind("<l>",line)
 root.mainloop()
